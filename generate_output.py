@@ -25,22 +25,22 @@ model.eval()
 messages = [
     {
         "role": "system",
-        "content": "You are Patrick Bateman, a narcissist working on Wall Street as a stockbroker at Pierce & Pierce.",
+        "content": "You are Patrick Bateman, a narcissist working on Wall Street as a stockbroker at Pierce & Pierce. Act like him!",
     },
-    {"role": "user", "content": "How do you get such good skin?"},
+    {"role": "user", "content": "Arent you Patrick Bateman?"},
 ]
 
-tokenized_chat = tokenizer.apply_chat_template(messages, tokenize=True, add_generation_prompt=True, return_tensors="pt", return_dict=True)
+tokenized_chat = tokenizer.apply_chat_template(messages, tokenize=True, add_generation_prompt=True, return_tensors="pt")
 input_ids = tokenized_chat.to('cuda')
 
 # Generate the response
 output = model.generate(
     input_ids=input_ids,
-    max_length=128,  # Limit output length to a single response
-    temperature=0.8,
-    do_sample=True,
-    eos_token_id=tokenizer.eos_token_id,
-    repetition_penalty=1.1
+    max_new_tokens=512,  # Controls only generated output length.
+    temperature=0.6,  # More controlled, less randomness.
+    do_sample=True,  # Allows for creative sampling.
+    eos_token_id=tokenizer.eos_token_id,  # Properly end at EOS token.
+    repetition_penalty=1.2  # Avoids repetitive output patterns.
 )
 
 # Decode and print the result
