@@ -10,7 +10,7 @@ from peft import LoraConfig
 from trl import SFTTrainer
  
 def main(args):
-    conevrt_to_jsonl('./movies/manual/american_psycho.txt', 'BATEMAN') #TODO: Change to an automated process
+    conevrt_to_jsonl('./movies/manual/american_psycho.txt', 'BATEMAN')
     
     # Base model id
     model_id = config.MODEL_ID
@@ -70,7 +70,7 @@ def main(args):
         eval_strategy="epoch", # Evaluate at the end of each epoch.
         save_strategy="epoch", # Save checkpoints at the end of each epoch.
         num_train_epochs=4, # Total number of training epochs to perform.          
-        per_device_train_batch_size=5, # The batch size per GPU/TPU core/CPU for training.
+        per_device_train_batch_size=3, # The batch size per GPU/TPU core/CPU for training.
         gradient_accumulation_steps=2, # Number of updates steps to accumulate the gradients for, before performing a backward/update pass.
         gradient_checkpointing=True,
         gradient_checkpointing_kwargs={"use_reentrant":False},# Added by Thomas
