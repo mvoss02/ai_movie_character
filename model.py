@@ -10,7 +10,7 @@ from peft import LoraConfig
 from trl import SFTTrainer
  
 def main(args):
-    conevrt_to_jsonl('./movies/manual/american_psycho.txt', 'BATEMAN')
+    conevrt_to_jsonl('./movie_scripts/raw_scripts/manual/american_psycho.txt', 'BATEMAN')
     
     # Base model id
     model_id = config.MODEL_ID
